@@ -9,7 +9,7 @@ function salvarConvidados(){
 }
 
 // Criar botão de remover
-function createRemoveButton(element, nome){
+function createRemoveButton(element, id){
     const btnRemove = document.createElement("button")
     btnRemove.classList.add("btnRemove")
     btnRemove.textContent = "❌"
@@ -17,7 +17,7 @@ function createRemoveButton(element, nome){
     btnRemove.addEventListener("click", () => {
         element.remove()
 
-        convidados = convidados.filter((guest) => guest !== nome)
+        convidados = convidados.filter((guest) => guest.id !== id)
 
         salvarConvidados()
     })
@@ -25,22 +25,20 @@ function createRemoveButton(element, nome){
     element.append(btnRemove)
 }
 
-// Adiciona botão aos convidados que já existem no HTML
-
 // Mostrar convidados salvos no localStorage
-convidados.forEach((nome) => {
+convidados.forEach((convidado) => {
 
-    if(nome.trim() === "") return
+    if(convidado === "") return
 
     const li = document.createElement("li")
     li.classList.add("guest")
 
     const span = document.createElement("span")
-    span.textContent = nome
+    span.textContent = convidado.nome
 
     li.append(span)
 
-    createRemoveButton(li, nome)
+    createRemoveButton(li, convidado.id)
 
     ul.append(li)
 })
@@ -57,21 +55,24 @@ buttonAdd.addEventListener("click", (evento) => {
 
     input.classList.remove("input-error")
 
-    const nome = input.value
+    const convidado = {
+        id: crypto.randomUUID(),
+        nome: input.value
+    }
 
     const li = document.createElement("li")
     li.classList.add("guest")
 
     const span = document.createElement("span")
-    span.textContent = nome
+    span.textContent = convidado.nome
 
     li.append(span)
 
-    createRemoveButton(li, nome)
+    createRemoveButton(li, convidado.id)
 
     ul.append(li)
 
-    convidados.push(nome)
+    convidados.push(convidado)
 
     salvarConvidados()
 
