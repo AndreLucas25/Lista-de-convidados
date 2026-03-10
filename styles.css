@@ -113,6 +113,8 @@ ul::-webkit-scrollbar-thumb:hover {
 
   display: flex;
   justify-content: space-between;
+
+  animation: aparecer 0.5s ease;
 }
 
 .btnRemove {
@@ -130,4 +132,16 @@ ul::-webkit-scrollbar-thumb:hover {
 .input-error,
 .input-error:focus {
   border-color: #e21a43;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
