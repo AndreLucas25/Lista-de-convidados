@@ -77,6 +77,26 @@ button {
 ul {
   list-style-type: none;
   margin-top: 42px;
+
+  height: 15rem;
+  overflow-y: auto;
+}
+
+ul::-webkit-scrollbar {
+  width: .25rem;
+}
+
+ul::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+ul::-webkit-scrollbar-thumb {
+  background: #8257e5;
+  border-radius: 10px;
+}
+
+ul::-webkit-scrollbar-thumb:hover {
+  background-color: #633bbc;
 }
 
 .guest {
@@ -93,6 +113,11 @@ ul {
 
   display: flex;
   justify-content: space-between;
+}
+
+.btnRemove {
+  background-color: transparent;
+  border: none;
 }
 
 @media (max-width: 420px) {

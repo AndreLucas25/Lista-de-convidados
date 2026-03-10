@@ -11,6 +11,7 @@ function salvarConvidados(){
 // Criar botão de remover
 function createRemoveButton(element, nome){
     const btnRemove = document.createElement("button")
+    btnRemove.classList.add("btnRemove")
     btnRemove.textContent = "❌"
 
     btnRemove.addEventListener("click", () => {
