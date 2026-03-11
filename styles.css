@@ -122,6 +122,11 @@ ul::-webkit-scrollbar-thumb:hover {
   border: none;
 }
 
+#divBtn{
+  margin-top: 2rem;
+  text-align: center;
+}
+
 @media (max-width: 420px) {
   form {
     flex-direction: column;
@@ -132,6 +137,10 @@ ul::-webkit-scrollbar-thumb:hover {
 .input-error,
 .input-error:focus {
   border-color: #e21a43;
+}
+
+.btnOff{
+  display: none;
 }
 
 @keyframes aparecer {
