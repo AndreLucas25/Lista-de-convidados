@@ -5,10 +5,12 @@ const buttonLimpar = document.querySelector("#btnLimpar")
 
 let convidados = JSON.parse(localStorage.getItem("convidados")) || []
 
-window.onload = () => {
-    if (convidados.length > 0) {
+function Btnlimpar(){
+    if (convidados.length > 3){
         buttonLimpar.classList.remove("btnOff")
-    }
+        } else{
+            buttonLimpar.classList.add("btnOff")
+        }
 }
 
 function salvarConvidados() {
@@ -24,12 +26,11 @@ function createRemoveButton(element, id) {
     btnRemove.addEventListener("click", () => {
         element.remove()
 
+
         convidados = convidados.filter((guest) => guest.id !== id)
 
-        if (convidados.length === 0) {
-            buttonLimpar.classList.add("btnOff")
-        }
         salvarConvidados()
+        Btnlimpar()
     })
 
     element.append(btnRemove)
@@ -49,6 +50,8 @@ convidados.forEach((convidado) => {
     li.append(span)
 
     createRemoveButton(li, convidado.id)
+
+    Btnlimpar()
 
     ul.append(li)
 })
@@ -76,7 +79,6 @@ buttonAdd.addEventListener("click", (evento) => {
     const span = document.createElement("span")
     span.textContent = convidado.nome
 
-    buttonLimpar.classList.remove("btnOff")
 
     li.append(span)
 
@@ -85,6 +87,8 @@ buttonAdd.addEventListener("click", (evento) => {
     ul.append(li)
 
     convidados.push(convidado)
+
+    Btnlimpar()
 
     salvarConvidados()
 
@@ -96,5 +100,5 @@ buttonLimpar.addEventListener("click", () => {
     ul.innerHTML = ""
     salvarConvidados()
 
-    buttonLimpar.classList.add("btnOff")
+    Btnlimpar()
 })
