@@ -4,6 +4,7 @@ const ul = document.querySelector("ul")
 const buttonLimpar = document.querySelector("#btnLimpar")
 
 let convidados = JSON.parse(localStorage.getItem("convidados")) || []
+let regexNumber = /\d/
 
 function Btnlimpar(){
     if (convidados.length > 3){
@@ -39,7 +40,7 @@ function createRemoveButton(element, id) {
 // Mostrar convidados salvos no localStorage
 convidados.forEach((convidado) => {
 
-    if (convidado === "") return
+    if (convidado.nome.trim() === "") return
 
     const li = document.createElement("li")
     li.classList.add("guest")
@@ -59,6 +60,11 @@ convidados.forEach((convidado) => {
 // Adicionar convidado
 buttonAdd.addEventListener("click", (evento) => {
     evento.preventDefault()
+
+    if (regexNumber.test(input.value)){
+        alert("O nome não pode conter números")
+        return
+    }
 
     if (input.value.trim() === "") {
         alert("Digite Algo!")
